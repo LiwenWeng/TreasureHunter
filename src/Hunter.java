@@ -152,6 +152,10 @@ public class Hunter {
         return str;
     }
 
+    public void testKit() {
+        kit = new String[] {"water", "rope", "machete", "horse", "boat"};
+    }
+
     /**
      * Searches kit Array for the index of the specified value.
      *
