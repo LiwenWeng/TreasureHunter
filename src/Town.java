@@ -97,17 +97,17 @@ public class Town {
         }
 
         if (Math.random() > noTroubleChance) {
-            printMessage = "You couldn't find any trouble";
+            printMessage = Colors.color("You couldn't find any trouble", "Red");
         } else {
-            printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
+            printMessage = Colors.color("You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n", "Red");
             int goldDiff = (int) (Math.random() * 10) + 1;
             if (Math.random() > noTroubleChance) {
                 printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
-                printMessage += "\nYou won the brawl and receive " + goldDiff + " gold.";
+                printMessage += "\nYou won the brawl and receive " + Colors.color(goldDiff + " gold", "Yellow") + ".";
                 hunter.changeGold(goldDiff);
             } else {
-                printMessage += "That'll teach you to go lookin' fer trouble in MY town! Now pay up!";
-                printMessage += "\nYou lost the brawl and pay " + goldDiff + " gold.";
+                printMessage += Colors.color("That'll teach you to go lookin' fer trouble in MY town! Now pay up!", "Red");
+                printMessage += "\nYou lost the brawl and pay " + Colors.color(goldDiff + " gold", "Yellow") + ".";
                 hunter.changeGold(-goldDiff);
 
             }
@@ -125,14 +125,16 @@ public class Town {
      */
     private Terrain getNewTerrain() {
         double rnd = Math.random();
-        if (rnd < .2) {
+        if (rnd < (1.0/6)) {
             return new Terrain("Mountains", "Rope");
-        } else if (rnd < .4) {
+        } else if (rnd < (2.0/6)) {
             return new Terrain("Ocean", "Boat");
-        } else if (rnd < .6) {
+        } else if (rnd < (3.0/6)) {
             return new Terrain("Plains", "Horse");
-        } else if (rnd < .8) {
+        } else if (rnd < (4.0/6)) {
             return new Terrain("Desert", "Water");
+        } else if (rnd < (5.0/6)) {
+            return new Terrain("Marsh", "Boots");
         } else {
             return new Terrain("Jungle", "Machete");
         }
