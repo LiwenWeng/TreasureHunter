@@ -153,7 +153,7 @@ public class Hunter {
     }
 
     public void testKit() {
-        kit = new String[] {"water", "rope", "machete", "horse", "boat"};
+        kit = new String[] {"water", "rope", "boots", "machete", "horse", "boat"};
     }
 
     /**
