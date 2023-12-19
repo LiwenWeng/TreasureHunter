@@ -9,6 +9,8 @@ public class Town {
     private Hunter hunter;
     private Shop shop;
     private Terrain terrain;
+    private String treasure;
+    private boolean searched;
     private String printMessage;
     private boolean toughTown;
 
@@ -43,6 +45,8 @@ public class Town {
      */
     public void hunterArrives(Hunter hunter) {
         this.hunter = hunter;
+        this.treasure = Treasure.randomTreasure();
+        this.searched = false;
         printMessage = "Welcome to town, " + hunter.getHunterName() + ".";
 
         if (toughTown) {
@@ -81,6 +85,25 @@ public class Town {
      */
     public void enterShop(String choice) {
         shop.enter(hunter, choice);
+    }
+
+    public void lookForTreasure() {
+        if (searched) {
+            System.out.println("You have already searched this town");
+            return;
+        }
+
+        searched = true;
+        if (!treasure.equals("Dust")) {
+            boolean added = hunter.addItemToTreasureList(treasure);
+            if (!added) {
+                System.out.println("You have already collected " + treasure);
+            } else {
+                System.out.println("You found a " + this.treasure + "!");
+            }
+        } else {
+            System.out.println("You found " + this.treasure + "!");
+        }
     }
 
     /**
