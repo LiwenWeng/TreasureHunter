@@ -97,7 +97,7 @@ public class TreasureHunter {
     private void showMenu() {
         String choice = "";
 
-        while (!choice.equals("x") && !hunter.isDead()) {
+        while (!choice.equals("x") && !hunter.isDead() && hunter.getTreasureCount() != 3) {
             System.out.println();
             System.out.println(currentTown.getLatestNews());
             System.out.println("***");
@@ -118,6 +118,9 @@ public class TreasureHunter {
         if (hunter.isDead()) {
             System.out.println(currentTown.getLatestNews());
             System.out.println("Game Over!");
+        }
+        if (hunter.getTreasureCount() == 3) {
+            System.out.println("Congratulations, you have found the last of the three treasures, you win!");
         }
     }
 
