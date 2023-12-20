@@ -11,6 +11,7 @@ public class Hunter {
     private String[] treasureList;
     private int gold;
     private boolean dead;
+    private int treasureCount;
 
     /**
      * The base constructor of a Hunter assigns the name to the hunter and an empty kit.
@@ -24,11 +25,16 @@ public class Hunter {
         treasureList = new String[3];
         gold = startingGold;
         dead = false;
+        treasureCount = 0;
     }
 
     //Accessors
     public String getHunterName() {
         return hunterName;
+    }
+
+    public int getTreasureCount() {
+        return treasureCount;
     }
 
     /**
@@ -171,6 +177,7 @@ public class Hunter {
 
         int idx = emptyPositionInArray(treasureList);
         treasureList[idx] = item;
+        treasureCount++;
         return true;
     }
 
