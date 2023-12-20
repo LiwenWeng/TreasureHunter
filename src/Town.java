@@ -13,6 +13,7 @@ public class Town {
     private boolean searched;
     private String printMessage;
     private boolean toughTown;
+    private boolean easyMode;
 
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -20,7 +21,7 @@ public class Town {
      * @param shop The town's shoppe.
      * @param toughness The surrounding terrain.
      */
-    public Town(Shop shop, double toughness) {
+    public Town(Shop shop, double toughness, boolean easyMode) {
         this.shop = shop;
         this.terrain = getNewTerrain();
 
@@ -32,6 +33,7 @@ public class Town {
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
+        this.easyMode = easyMode;
     }
 
     public String getLatestNews() {
@@ -66,7 +68,7 @@ public class Town {
         if (canLeaveTown) {
             String item = terrain.getNeededItem();
             printMessage = "You used your " + item + " to cross the " + terrain.getTerrainName() + ".";
-            if (checkItemBreak()) {
+            if (checkItemBreak() && !easyMode) {
                 hunter.removeItemFromKit(item);
                 printMessage += "\nUnfortunately, you lost your " + item;
             }
@@ -114,11 +116,20 @@ public class Town {
      */
     public void lookForTrouble() {
         double noTroubleChance;
-        if (toughTown) {
-            noTroubleChance = 0.66;
+        if (easyMode) {
+            if (toughTown) {
+                noTroubleChance = 0.50;
+            } else {
+                noTroubleChance = 0.25;
+            }
         } else {
-            noTroubleChance = 0.33;
+            if (toughTown) {
+                noTroubleChance = 0.66;
+            } else {
+                noTroubleChance = 0.33;
+            }
         }
+
 
         if (Math.random() > noTroubleChance) {
             printMessage = Colors.color("You couldn't find any trouble", "Red");
