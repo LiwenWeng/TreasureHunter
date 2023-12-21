@@ -52,7 +52,7 @@ public class Shop {
             System.out.print("What're you lookin' to buy? ");
             String item = SCANNER.nextLine().toLowerCase();
             int cost = checkMarketPrice(item, true);
-            if (cost == 0) {
+            if (cost == 0 && !samuraiMode) {
                 System.out.println("We ain't got none of those.");
             } else {
                 System.out.print("It'll cost you " + Colors.color(cost + " gold", "Yellow") + ". Buy it (y/n)? ");

@@ -92,7 +92,7 @@ public class Town {
 
     public void lookForTreasure() {
         if (searched) {
-            System.out.println("You have already searched this town");
+            printMessage = "You have already searched this town";
             return;
         }
 
@@ -100,12 +100,12 @@ public class Town {
         if (!treasure.equals("Dust")) {
             boolean added = hunter.addItemToTreasureList(treasure);
             if (!added) {
-                System.out.println("You have already collected " + treasure);
+                printMessage = "You have already collected " + treasure;
             } else {
-                System.out.println("You found a " + this.treasure + "!");
+                printMessage = "You found a " + this.treasure + "!";
             }
         } else {
-            System.out.println("You found " + this.treasure + "!");
+            printMessage = "You found " + this.treasure + "!";
         }
     }
 

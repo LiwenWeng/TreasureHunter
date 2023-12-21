@@ -65,12 +65,12 @@ public class Hunter {
      */
     public boolean buyItem(String item, int costOfItem) {
         if (item.equals("sword")) {
-            if (samuraiMode && !hasItemInKit(item)) {
+            if (samuraiMode) {
                 addItem(item);
                 return true;
             }
         }
-        if (hasItemInKit("sword") && !hasItemInKit(item)) {
+        if (hasItemInKit("sword")) {
             addItem(item);
             return true;
         }
