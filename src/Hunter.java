@@ -22,7 +22,7 @@ public class Hunter {
      */
     public Hunter(String hunterName, int startingGold, boolean samuraiMode) {
         this.hunterName = hunterName;
-        kit = new String[6];
+        kit = new String[7];
         treasureList = new String[3];
         gold = startingGold;
         dead = false;
@@ -209,14 +209,14 @@ public class Hunter {
     public String toString() {
         String str = hunterName + " has " + Colors.color(gold + " gold", "Yellow");
         if (!kitIsEmpty()) {
-            str += " and " + getInventory() + "\n";
+            str += " and " + getInventory();
         }
-        str += getTreasureList();
+        str += "\n" + getTreasureList();
         return str;
     }
 
     public void testKit() {
-        kit = new String[] {"water", "rope", "boots", "machete", "horse", "boat"};
+        kit = new String[] {"water", "rope", "boots", "machete", "shovel", "horse", "boat"};
     }
 
     /**

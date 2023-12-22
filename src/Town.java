@@ -11,6 +11,7 @@ public class Town {
     private Terrain terrain;
     private String treasure;
     private boolean searched;
+    private boolean dug;
     private String printMessage;
     private boolean toughTown;
     private boolean easyMode;
@@ -24,6 +25,8 @@ public class Town {
     public Town(Shop shop, double toughness, boolean easyMode) {
         this.shop = shop;
         this.terrain = getNewTerrain();
+        this.searched = false;
+        this.dug = false;
 
         // the hunter gets set using the hunterArrives method, which
         // gets called from a client class
@@ -106,6 +109,27 @@ public class Town {
             }
         } else {
             printMessage = "You found " + this.treasure + "!";
+        }
+    }
+
+    public void digForTreasure() {
+        if (dug) {
+            System.out.println("You already dug for gold in this town.");
+            return;
+        }
+
+        if (!hunter.hasItemInKit("shovel")) {
+            System.out.println("You can't dig for gold without a shovel");
+        } else {
+            double rand = Math.random();
+            if (rand < 0.5) {
+                dug = true;
+                int goldAmt = (int) (Math.random() * 21);
+                hunter.changeGold(goldAmt);
+                System.out.println("You dug up " + goldAmt + " gold!");
+            } else {
+                System.out.println("You dug but only found dirt");
+            }
         }
     }
 
